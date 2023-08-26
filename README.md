@@ -1,14 +1,6 @@
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Best-README-Template</h3>
-
-  <p align="center">
  
-<!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -47,7 +39,7 @@ API Integration: Utilizes a reliable weather API.
 
 ### Built With
 
--  [![React][React.js]][React-url]
+-  React
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -61,8 +53,6 @@ API Integration: Utilizes a reliable weather API.
    ```
 
 ### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 1. Clone the repo
 
