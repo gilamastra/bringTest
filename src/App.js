@@ -1,0 +1,49 @@
+import { useEffect, useState } from "react";
+import Search from "./components/search/search";
+import CurrentWeather from "./components/current-weather/current-weather";
+import Forecast from "./components/forecast/forecast";
+import { WEATHER_API_URL, WEATHER_API_KEY } from "./api";
+import "./App.css";
+
+function App() {
+   const [currentWeather, setCurrentWeather] = useState(null);
+   const [forecast, setForecast] = useState(null);
+
+   const handleOnSearchChange = (selectedCity) => {
+      const currentWeatherFetch = fetch(
+         `${WEATHER_API_URL}/weather?q=${selectedCity}&appid=${WEATHER_API_KEY}&units=metric`
+      );
+      const forecastFetch = fetch(
+         `${WEATHER_API_URL}/forecast?q=${selectedCity}&appid=${WEATHER_API_KEY}&units=metric`
+      );
+
+      Promise.all([currentWeatherFetch, forecastFetch])
+         .then(async (response) => {
+            const weatherResponse = await response[0].json();
+            const forecastResponse = await response[1].json();
+
+            setCurrentWeather({
+               city: selectedCity,
+               ...weatherResponse,
+            });
+            setForecast({
+               city: selectedCity,
+               ...forecastResponse,
+            });
+         })
+         .catch(console.log);
+   };
+   useEffect(() => {
+      handleOnSearchChange("London");
+   }, []);
+
+   return (
+      <div className="container">
+         <Search onSearchChange={handleOnSearchChange} />
+         {currentWeather && <CurrentWeather data={currentWeather} />}
+         {forecast && <Forecast data={forecast} />}
+      </div>
+   );
+}
+
+export default App;
